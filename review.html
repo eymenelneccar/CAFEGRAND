@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>يو كافيه | تقييم</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'deep-black': '#050505',
+            'charcoal': '#121212',
+            'rich-gray': '#1E1E1E'
+          },
+          fontFamily: {
+            'menu': ['AraEtabAlMonie','Tajawal','sans-serif'],
+            'cairo': ['Cairo','sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'AraEtabAlMonie'; src: url('fonts/AraEtabAlMonie_ee-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'AraEtabAlMonie'; src: url('fonts/AraEtabAlMonie_ee-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'AraEtabAlMonie'; src: url('fonts/AraEtabAlMonie_ee-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+    .loader { -webkit-animation: spinner 1.5s linear infinite; animation: spinner 1.5s linear infinite; }
+    @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-[#f5ccce] text-black font-menu overflow-x-hidden selection:bg-black selection:text-white min-h-screen">
+  <nav class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-black/10 relative">
+    <div class="pointer-events-none absolute top-0 left-0 w-full h-6 bg-gradient-to-b from-white/40 to-transparent"></div>
+    <div class="pointer-events-none absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white/40 to-transparent"></div>
+    <div class="flex items-center gap-2">
+      <img src="LOGO.png" class="w-10 h-10 object-contain" alt="Logo">
+      <div class="text-2xl font-menu text-black font-bold tracking-wider">
+        يو كافيه <span class="text-xs text-black block font-menu tracking-[0.3em]">you cafe</span>
+      </div>
+    </div>
+    <a href="index.html" class="hover:text-black transition-colors text-sm">رجوع</a>
+  </nav>
+
+  <main class="px-4 pt-24 pb-16 max-w-md mx-auto">
+    <div class="bg-white border border-black/10 rounded-2xl shadow-lg p-6 space-y-6">
+      <h1 class="text-3xl font-bold text-black text-center">قيّمنا</h1>
+
+      <div class="flex items-center justify-center gap-2">
+        <button type="button" id="star-1" onclick="setRating(1)" class="material-symbols-outlined text-4xl text-gray-300 hover:text-black transition">star</button>
+        <button type="button" id="star-2" onclick="setRating(2)" class="material-symbols-outlined text-4xl text-gray-300 hover:text-black transition">star</button>
+        <button type="button" id="star-3" onclick="setRating(3)" class="material-symbols-outlined text-4xl text-gray-300 hover:text-black transition">star</button>
+        <button type="button" id="star-4" onclick="setRating(4)" class="material-symbols-outlined text-4xl text-gray-300 hover:text-black transition">star</button>
+        <button type="button" id="star-5" onclick="setRating(5)" class="material-symbols-outlined text-4xl text-gray-300 hover:text-black transition">star</button>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex items-center gap-4">
+          <input id="rev-name" class="w-full bg-white border border-gray-300 rounded-lg p-2 text-right focus:outline-none focus:border-black text-black" type="text" placeholder="الاسم">
+          <label class="whitespace-nowrap font-bold w-20 text-left">الاسم</label>
+        </div>
+        <div class="flex items-center gap-4">
+          <input id="rev-phone" class="w-full bg-white border border-gray-300 rounded-lg p-2 text-right focus:outline-none focus:border-black text-black" type="tel" placeholder="رقم الهاتف">
+          <label class="whitespace-nowrap font-bold w-20 text-left">الرقم</label>
+        </div>
+        <div>
+          <textarea id="rev-comment" class="w-full bg-white border border-gray-300 rounded-lg p-2 text-right focus:outline-none focus:border-black text-black" rows="4" placeholder="تعليقك"></textarea>
+        </div>
+      </div>
+
+      <button onclick="submitReview()" class="w-full bg-black hover:bg-neutral-800 text-white font-bold py-3 rounded-lg shadow-lg flex items-center justify-center gap-2 text-lg transition-transform active:scale-95">
+        <span class="material-symbols-outlined">grade</span>
+        إرسال التقييم
+      </button>
+    </div>
+  </main>
+
+  <script>
+    window.REVIEW_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhkMG27zw3gcDpo8fYH7BLq7Qb7ToT07MfTCdznmzoKH_aBc0Qpg17wwt3tW9QXft4jA/exec';
+    let rating = 0;
+    function setRating(val){ rating = val; for(let i=1;i<=5;i++){ const el=document.getElementById('star-'+i); if(!el) continue; if(i<=val){ el.classList.remove('text-gray-300'); el.classList.add('text-black'); } else { el.classList.remove('text-black'); el.classList.add('text-gray-300'); } } }
+    async function submitReview(){ const name=document.getElementById('rev-name').value.trim(); const phone=document.getElementById('rev-phone').value.trim(); const comment=document.getElementById('rev-comment').value.trim(); if(!rating){ alert('اختر عدد النجوم'); return; } const btn=document.querySelector('button[onclick="submitReview()"]'); if(btn){ btn.disabled=true; btn.classList.add('opacity-70'); }
+      const REVIEW_SCRIPT_URL=(localStorage.getItem('review_script_url')||window.REVIEW_SCRIPT_URL||'').trim(); const payload={ sheet:'you', name, phone, comment, rating, ts:new Date().toISOString() };
+      if(REVIEW_SCRIPT_URL){ try{ const qs=new URLSearchParams(payload).toString(); const img=new Image(); img.src=REVIEW_SCRIPT_URL + '?' + qs + '&z=' + Date.now(); setTimeout(()=>{ alert('تم إرسال التقييم'); if(btn){ btn.disabled=false; btn.classList.remove('opacity-70'); } }, 600); } catch(e){ alert('تعذر الإرسال، تحقق من الرابط'); if(btn){ btn.disabled=false; btn.classList.remove('opacity-70'); } } return; }
+      const msg = encodeURIComponent(`*تقييم جديد*\n*الاسم:* ${name}\n*الرقم:* ${phone}\n*التقييم:* ${rating} نجوم\n*تعليق:* ${comment}`); const waStored=(localStorage.getItem('restaurant_whatsapp_number')||'').trim(); const waNumber= waStored || '9647800000000'; const url=`https://wa.me/${waNumber}?text=${msg}`; window.open(url,'_blank'); if(btn){ btn.disabled=false; btn.classList.remove('opacity-70'); }
+    }
+  </script>
+</body>
+</html>

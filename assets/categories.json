@@ -1,0 +1,20 @@
+[
+  {
+    "name": "قهوة",
+    "imageUrl": "assets/images/sa.png",
+    "span": 2,
+    "height": 64
+  },
+  {
+    "name": "مشروبات",
+    "imageUrl": "assets/images/sa.png",
+    "span": 1,
+    "height": 40
+  },
+  {
+    "name": "قهوة وحليب",
+    "imageUrl": "",
+    "span": 1,
+    "height": 40
+  }
+]
