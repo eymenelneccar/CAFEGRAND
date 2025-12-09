@@ -26,6 +26,9 @@ window.GH_BRANCH = window.GH_BRANCH || (window.DATA_REPO && window.DATA_REPO.bra
     }catch(_){ }
     return origFetch(input, init);
   };
+  function resolveAssetUrl(path){ var raw=String(path||'').trim(); if(!raw) return ''; if(/^(?:https?:)?\/\//i.test(raw)) return raw; var rel=raw.replace(/^\//,''); if(!/^assets\//.test(rel)) return raw; if(!isGhEnabled()) return raw; return 'https://raw.githubusercontent.com/'+window.GH_OWNER+'/'+window.GH_REPO+'/'+window.GH_BRANCH+'/'+rel; }
+  try{ var desc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src'); if (desc && desc.set && desc.get){ Object.defineProperty(HTMLImageElement.prototype,'src',{ get:function(){ return desc.get.call(this); }, set:function(v){ try{ if (v) { var s = String(v); if (!/^(?:https?:)?\/\//i.test(s)) { var r = resolveAssetUrl(s); if (r) v = r; } } }catch(_){ } return desc.set.call(this,v); } }); } }catch(_){ }
+  try{ var setAttr = Element.prototype.setAttribute; Element.prototype.setAttribute = function(name,value){ try{ if (this && this.tagName==='IMG' && String(name).toLowerCase()==='src') { var v = String(value||''); if (!/^(?:https?:)?\/\//i.test(v)) { var r = resolveAssetUrl(v); if (r) value = r; } } }catch(_){ } return setAttr.call(this,name,value); } }catch(_){ }
 })();
 </script>
 
