@@ -1,1 +1,114 @@
-[]
+[
+  {
+    "name": "قهوة",
+    "category": "قهوة",
+    "price": 9500,
+    "description": "",
+    "id": 1764848972717,
+    "imageUrl": "assets/images/hh.png"
+  },
+  {
+    "name": "قهوة",
+    "category": "مشروبات",
+    "price": 9500,
+    "description": "",
+    "id": 1764848972717,
+    "imageUrl": "assets/images/hh.png"
+  },
+  {
+    "id": 1765231476688,
+    "name": "اسبريسو",
+    "category": "قهوة",
+    "price": 2500,
+    "imageUrl": "",
+    "description": "سنجل"
+  },
+  {
+    "id": 1765231477352,
+    "name": "دوبيو",
+    "category": "قهوة",
+    "price": 3500,
+    "imageUrl": "",
+    "description": "دبل شوت"
+  },
+  {
+    "id": 1765231476820,
+    "name": "بندق",
+    "category": "قهوة",
+    "price": 3000,
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "id": 1765231476812,
+    "name": "تركية",
+    "category": "قهوة",
+    "price": 3000,
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "id": 1765231477090,
+    "name": "امريكانو",
+    "category": "قهوة",
+    "price": 3500,
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "id": 1765231476839,
+    "name": "فوكاتو",
+    "category": "قهوة",
+    "price": 4000,
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "id": 1765231477346,
+    "name": "كابتشينو",
+    "category": "قهوة وحليب",
+    "price": 3500,
+    "imageUrl": "/assets/images/1765280662145-WhatsApp_Image_2025-12-08_at_18.24.24_a2e3381a.jpg",
+    "description": ""
+  },
+  {
+    "id": 1765231477257,
+    "name": "فانيلا",
+    "category": "قهوة وحليب",
+    "price": 4000,
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "id": 1765231476862,
+    "name": "كراميل",
+    "category": "قهوة وحليب",
+    "price": 4000,
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "id": 1765231477080,
+    "name": "بندق",
+    "category": "قهوة وحليب",
+    "price": 4000,
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "id": 1765280220117,
+    "name": "قهوة",
+    "category": "مشروبات",
+    "price": 235,
+    "imageUrl": "",
+    "description": "3253"
+  },
+  {
+    "id": 1765280242782,
+    "name": "23525",
+    "category": "مشروبات",
+    "price": 23525,
+    "imageUrl": "/assets/images/1765280239606-463402120_467039019724015_7785011532410060907_n.jpg",
+    "description": "25325"
+  }
+]
