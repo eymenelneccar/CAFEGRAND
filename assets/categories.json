@@ -18,24 +18,6 @@
     "height": 48
   },
   {
-    "name": "قهوة",
-    "imageUrl": "assets/images/sa.png",
-    "span": 2,
-    "height": 64
-  },
-  {
-    "name": "مشروبات",
-    "imageUrl": "assets/images/sa.png",
-    "span": 1,
-    "height": 40
-  },
-  {
-    "name": "قهوة وحليب",
-    "imageUrl": "/assets/images/1765279294805-463402120_467039019724015_7785011532410060907_n.jpg",
-    "span": 1,
-    "height": 40
-  },
-  {
     "name": "COCKTIL",
     "imageUrl": "",
     "span": 1,
