@@ -5,16 +5,22 @@ window.GH_REPO = window.GH_REPO || (window.DATA_REPO && window.DATA_REPO.repo) |
 window.GH_BRANCH = window.GH_BRANCH || (window.DATA_REPO && window.DATA_REPO.branch) || window.GITHUB_BRANCH || 'main';
 (function(){
   function isGhEnabled(){ return Boolean(window.GH_OWNER && window.GH_REPO); }
-  function ghUrl(path){ var p=String(path||'').replace(/^\//,''); return 'https://raw.githubusercontent.com/'+window.GH_OWNER+'/'+window.GH_REPO+'/'+window.GH_BRANCH+'/'+p+'?t='+Date.now(); }
+  function ghUrls(path){ var p=String(path||'').replace(/^\//,''); var t=Date.now(); return [
+    'https://raw.githubusercontent.com/'+window.GH_OWNER+'/'+window.GH_REPO+'/'+window.GH_BRANCH+'/'+p+'?t='+t,
+    'https://cdn.jsdelivr.net/gh/'+window.GH_OWNER+'/'+window.GH_REPO+'@'+window.GH_BRANCH+'/'+p+'?t='+t
+  ]; }
+  async function ensureGhConfig(){ if (isGhEnabled()) return true; try{ var r = await fetch('/api/config', { cache: 'no-store' }); if (r && r.ok){ var j = await r.json().catch(()=>({})); if (j && j.ok && j.owner && j.repo){ window.GH_OWNER=j.owner; window.GH_REPO=j.repo; window.GH_BRANCH=j.branch||'main'; return true; } } }catch(_){ } return false; }
+  async function fetchGhAsset(key, init){ var urls = ghUrls(key); for (var i=0;i<urls.length;i++){ try{ var rr = await origFetch(urls[i], init); if (rr && rr.ok) return rr; }catch(_){ } } return null; }
   var origFetch = window.fetch;
-  window.fetch = function(input, init){
+  window.fetch = async function(input, init){
     try{
       var url = (typeof input==='string') ? input : (input && input.url) || '';
-      if (isGhEnabled()){
-        var rel = String(url||'').replace(location.origin,'');
-        if (/^\/?assets\/(categories|menu|hero|governorates)\.json(\?.*)?$/.test(rel)){
-          var key = rel.replace(/^\//,'').replace(/\?.*$/,'');
-          return origFetch(ghUrl(key), init);
+      var rel = String(url||'').replace(location.origin,'');
+      if (/^\/?assets\/(categories|menu|hero|governorates)\.json(\?.*)?$/.test(rel)){
+        var key = rel.replace(/^\//,'').replace(/\?.*$/,'');
+        if (isGhEnabled() || await ensureGhConfig()){
+          var ghResp = await fetchGhAsset(key, init);
+          if (ghResp) return ghResp;
         }
       }
     }catch(_){ }
