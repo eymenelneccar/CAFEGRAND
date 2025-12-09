@@ -2,8 +2,8 @@
   {
     "name": "COCKTIL",
     "imageUrl": "",
-    "span": 1,
-    "height": 48
+    "span": 2,
+    "height": 40
   },
   {
     "name": "JUICES",
@@ -199,6 +199,24 @@
   },
   {
     "name": "سموذي",
+    "imageUrl": "",
+    "span": 1,
+    "height": 48
+  },
+  {
+    "name": "القهوة",
+    "imageUrl": "",
+    "span": 1,
+    "height": 48
+  },
+  {
+    "name": "الشاي",
+    "imageUrl": "",
+    "span": 1,
+    "height": 48
+  },
+  {
+    "name": "العصائر",
     "imageUrl": "",
     "span": 1,
     "height": 48
