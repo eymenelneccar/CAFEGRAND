@@ -94,5 +94,13 @@
     "price": 4000,
     "imageUrl": "",
     "description": ""
+  },
+  {
+    "id": 1765279316087,
+    "name": "ايس لاتيه كراميل",
+    "category": "مشروبات",
+    "price": 6505,
+    "imageUrl": "/assets/images/1765279314075-Screenshot2025-12-09114152.png",
+    "description": ""
   }
 ]
